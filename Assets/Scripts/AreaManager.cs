@@ -7,6 +7,7 @@ public class AreaManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log($"Trigger Enter: {collision.gameObject.name} with tag {collision.tag}");
         if (IsResourceCard(collision.tag))
         {
             string cardType = collision.tag;
@@ -20,12 +21,14 @@ public class AreaManager : MonoBehaviour
                 cardCounts[cardType] = 1;
             }
 
-            Debug.Log($"Card entered: {cardType}. Count: {cardCounts[cardType]}");
+            Debug.Log($"Card entered: {cardType}. Updated counts:");
+            PrintCardCounts();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log($"Trigger Exit: {collision.gameObject.name} with tag {collision.tag}");
         if (IsResourceCard(collision.tag))
         {
             string cardType = collision.tag;
@@ -39,7 +42,8 @@ public class AreaManager : MonoBehaviour
                     cardCounts.Remove(cardType);
                 }
 
-                Debug.Log($"Card exited: {cardType}. Count: {(cardCounts.ContainsKey(cardType) ? cardCounts[cardType] : 0)}");
+                Debug.Log($"Card exited: {cardType}. Updated counts:");
+                PrintCardCounts();
             }
         }
     }
@@ -57,6 +61,16 @@ public class AreaManager : MonoBehaviour
     private bool IsResourceCard(string tag)
     {
         // Add all possible resource tags here
-        return tag == "Stamina" || tag == "Strength" || tag == "Soul" || tag == "Sin" || tag == "Scraps" || tag == "Sanity"; // Add more tags as needed
+        return tag == "Stamina" || tag == "Strength" || tag == "Sin" || tag == "Soul" || tag == "Scraps" || tag == "Sanity"; // Add more tags as needed
+    }
+
+    private void PrintCardCounts()
+    {
+        string message = "Current card counts in area:\n";
+        foreach (var entry in cardCounts)
+        {
+            message += $"{entry.Key}: {entry.Value}\n";
+        }
+        Debug.Log(message);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject canvas;
     private bool isDragging = false;
@@ -14,13 +14,38 @@ public class DragDrop : MonoBehaviour
         canvas = GameObject.Find("Main Canvas");
     }
 
-    void Update()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isDragging)
+        startParent = transform.parent.gameObject;
+        startPosition = transform.position;
+        isDragging = true;
+        transform.SetParent(canvas.transform, true);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        Vector2 position;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            canvas.GetComponent<Camera>(),
+            out position
+        );
+        transform.localPosition = position;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;
+
+        if (currentDropZone != null)
         {
-            Vector2 position = Input.mousePosition;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, position, canvas.GetComponent<Camera>(), out Vector2 localPoint);
-            transform.position = canvas.transform.TransformPoint(localPoint);
+            transform.SetParent(currentDropZone.transform, false);
+        }
+        else
+        {
+            transform.position = startPosition;
+            transform.SetParent(startParent.transform, false);
         }
     }
 
@@ -37,28 +62,6 @@ public class DragDrop : MonoBehaviour
         if (collision.gameObject == currentDropZone)
         {
             currentDropZone = null;
-        }
-    }
-
-    public void StartDrag()
-    {
-        startParent = transform.parent.gameObject;
-        startPosition = transform.position;
-        isDragging = true;
-        transform.SetParent(canvas.transform, true);
-    }
-
-    public void EndDrag()
-    {
-        isDragging = false;
-        if (currentDropZone != null)
-        {
-            transform.SetParent(currentDropZone.transform, false);
-        }
-        else
-        {
-            transform.position = startPosition;
-            transform.SetParent(startParent.transform, false);
         }
     }
 }
