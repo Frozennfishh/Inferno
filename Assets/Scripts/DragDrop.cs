@@ -47,7 +47,7 @@ public class DragDrop : MonoBehaviour /*, IBeginDragHandler, IDragHandler, IEndD
 
     public void EndDrag()
     {
-        isDragging = false;
+        isDragging = false;``
         if (isOverDropZone)
         {
             transform.SetParent(currentDropZone.transform, false);
