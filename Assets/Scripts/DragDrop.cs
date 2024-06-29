@@ -1,65 +1,46 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour /*, IBeginDragHandler, IDragHandler, IEndDragHandler */
+public class DragDrop : MonoBehaviour
 {
-    //public GameObject canvas;
+    public GameObject canvas;
     private bool isDragging = false;
-    private bool isOverDropZone = false;
-    //private GameObject startParent;
+    private GameObject startParent;
     private Vector2 startPosition;
     private GameObject currentDropZone;
 
-    
-
-    /*private void Awake()
+    private void Awake()
     {
         canvas = GameObject.Find("Main Canvas");
     }
-    */
 
     void Update()
     {
         if (isDragging)
-        { 
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        {
+            Vector2 position = Input.mousePosition;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, position, canvas.GetComponent<Camera>(), out Vector2 localPoint);
+            transform.position = canvas.transform.TransformPoint(localPoint);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isOverDropZone = true;
-        currentDropZone = collision.gameObject;
+        if (collision.gameObject.CompareTag("DropArea") || collision.gameObject.CompareTag("PlayerArea"))
+        {
+            currentDropZone = collision.gameObject;
+        }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        isOverDropZone = false;
-        currentDropZone = null;
+        if (collision.gameObject == currentDropZone)
+        {
+            currentDropZone = null;
+        }
     }
 
     public void StartDrag()
-    {
-        startPosition = transform.position;
-        isDragging = true;
-    }
-
-    public void EndDrag()
-    {
-        isDragging = false;``
-        if (isOverDropZone)
-        {
-            transform.SetParent(currentDropZone.transform, false);
-        }
-        else
-        {
-            transform.position = startPosition;
-        }
-    }
-    /*
-
-    public void OnBeginDrag(PointerEventData eventData)
     {
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
@@ -67,16 +48,9 @@ public class DragDrop : MonoBehaviour /*, IBeginDragHandler, IDragHandler, IEndD
         transform.SetParent(canvas.transform, true);
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        Vector2 position = eventData.position;
-        transform.position = position;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
+    public void EndDrag()
     {
         isDragging = false;
-
         if (currentDropZone != null)
         {
             transform.SetParent(currentDropZone.transform, false);
@@ -87,23 +61,4 @@ public class DragDrop : MonoBehaviour /*, IBeginDragHandler, IDragHandler, IEndD
             transform.SetParent(startParent.transform, false);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("DropZone") || collision.gameObject.CompareTag("PlayerArea"))
-        {
-            currentDropZone = collision.gameObject;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("DropZone") || collision.gameObject.CompareTag("PlayerArea"))
-        {
-            if (currentDropZone == collision.gameObject)
-            {
-                currentDropZone = null;
-            }
-        }
-    }*/
 }
