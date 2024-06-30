@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2294233766057589321}
   - component: {fileID: 5601650171665247192}
   m_Layer: 5
-  m_Name: Story Card 1 Option 2
+  m_Name: Story Card 2 Option 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropAreaTag: DropArea
+  drawCardsTag: DrawCards
   optionButton: {fileID: 2294233766057589321}
   checkInterval: 0.1
   cardRequirements:
@@ -142,6 +143,8 @@ MonoBehaviour:
     requiredCount: 1
   - cardType: Sin
     requiredCount: 1
+  rewardList:
+  - {fileID: 0}
 --- !u!1 &6298363306727437144
 GameObject:
   m_ObjectHideFlags: 0

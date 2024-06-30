@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4587660898172706987}
   - component: {fileID: 333479378669427823}
   m_Layer: 5
-  m_Name: Story Card 1 Option 1
+  m_Name: Story Card 2 Option 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,4 +280,3 @@ MonoBehaviour:
   rewardList:
   - {fileID: 3142601080797373330, guid: 79f226d7f271c0045b24d99c0faa3605, type: 3}
   - {fileID: 7286999753761024897, guid: d7fe239ca19d37f40b9d9ae3d387e73d, type: 3}
-  - {fileID: 7515613336041648913, guid: 6cc9ec1ff27bc5a4c96ecbc0aeceaf76, type: 3}

@@ -13,6 +13,7 @@ TagManager:
   - Soul
   - Scraps
   - Sanity
+  - DrawCards
   layers:
   - Default
   - TransparentFX

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawCards : MonoBehaviour
 {
-    public GameObject storyCard1;
-    public GameObject storyCard2;
+    /*public GameObject storyCard1;
+    public GameObject storyCard2;*/
     public GameObject card1; //Soul
     public GameObject card2; //Stamina
     public GameObject card3; //Scraps
@@ -17,7 +18,7 @@ public class DrawCards : MonoBehaviour
     public GameObject optionArea;
 
     private List<GameObject> playerDeck = new List<GameObject>();
-    private List<GameObject> storyDeck = new List<GameObject>();
+    public List<GameObject> storyDeck = new List<GameObject>();
     private List<GameObject> remainingStoryDeck = new List<GameObject>();
     private List<GameObject> drawnStoryCards = new List<GameObject>(); // List to keep track of drawn cards
 
@@ -25,8 +26,8 @@ public class DrawCards : MonoBehaviour
     void Start()
     {
         // Initialize decks
-        storyDeck.Add(storyCard1);
-        storyDeck.Add(storyCard2);
+        /*storyDeck.Add(storyCard1);
+        storyDeck.Add(storyCard2);*/
         remainingStoryDeck.AddRange(storyDeck);
 
         playerDeck.Add(card1);
@@ -52,19 +53,7 @@ public class DrawCards : MonoBehaviour
 
     public void onClick()
     {
-        /*// Draw cards from player deck to hand area
-        for (int i = 0; i < playerDeck.Count; i++)
-        {
-            for (int k = 0; k < 2; k++)
-            {
-                GameObject playerCard = Instantiate(playerDeck[i], new Vector3(0, 0, 0), Quaternion.identity);
-                playerCard.transform.SetParent(handArea.transform, false);
-            }
-        }
-        */
         DrawAdditionalStoryCard();
-        GameObject playerCardExtra = Instantiate(playerDeck[5], new Vector3(0, 0, 0), Quaternion.identity);
-        playerCardExtra.transform.SetParent(handArea.transform, false);
     }
 
     private void DrawStoryCard()
