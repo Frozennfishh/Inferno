@@ -9,6 +9,7 @@ public class OptionCardButton : MonoBehaviour
     public Button optionButton;              // Reference to the button component
     public float checkInterval = 0.5f;       // Interval in seconds to check for updates
     private GameOverScreen gameOverScreen = new GameOverScreen();
+    public int handCardLimit = 15;           // Maximum number of cards allowed in hand
 
     [System.Serializable]
     public class CardRequirement
@@ -133,8 +134,35 @@ public class OptionCardButton : MonoBehaviour
                     playerCard.transform.SetParent(drawCards.handArea.transform, false);
                 }
 
+                // Check the number of cards in the hand area
+                Transform handTransform = drawCards.handArea.transform;
+                if (handTransform.childCount > handCardLimit)
+                {
+                    Debug.Log("Hand exceeds limit. Removing random cards.");
+
+                    // Get all cards in the hand area
+                    List<Transform> handCards = new List<Transform>();
+                    foreach (Transform child in handTransform)
+                    {
+                        handCards.Add(child);
+                    }
+
+                    // Randomly select 5 cards to destroy
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int randomIndex = Random.Range(0, handCards.Count);
+                        Destroy(handCards[randomIndex].gameObject);
+                        handCards.RemoveAt(randomIndex);
+                    }
+                }
+
                 // Draw additional story card
                 drawCards.DrawAdditionalStoryCard();
+
+                foreach (Transform child in dropArea.transform)
+                {
+                    Destroy(child.gameObject);
+                }
             }
             else
             {
@@ -144,11 +172,6 @@ public class OptionCardButton : MonoBehaviour
         else
         {
             Debug.Log("Insufficient resources");
-        }
-
-        foreach (Transform child in dropArea.transform)
-        {
-            Destroy(child.gameObject);
         }
     }
 }
