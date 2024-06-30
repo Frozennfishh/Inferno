@@ -1776,7 +1776,7 @@ PrefabInstance:
       objectReference: {fileID: 2590521097856624797}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.data[0]
@@ -1802,6 +1802,14 @@ PrefabInstance:
       propertyPath: storyDeck.Array.data[5]
       value: 
       objectReference: {fileID: 8680502948703460179, guid: 637620aedb59b2645bc758647fcff99a, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[6]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: 8dbb86acece48a542a6b68c4a195f055, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[7]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: 0c628d253a1c98c4d9e6297430e16cd9, type: 3}
     - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: cardPrefabs.Array.size
       value: 6
