@@ -681,8 +681,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -978,7 +978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Game Over
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1478,6 +1478,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3248614043219392576, guid: 9c3b61bd600fbef4fb019995f7f5a021, type: 3}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7515613336041648913, guid: 6cc9ec1ff27bc5a4c96ecbc0aeceaf76, type: 3}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5661813507539609326, guid: 0024b3f5439d419458c7360b2ef79128, type: 3}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 3142601080797373330, guid: 79f226d7f271c0045b24d99c0faa3605, type: 3}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1410032329703578042, guid: d7bbc67ee095ab04a9cf053a69685e36, type: 3}
+    - target: {fileID: 3629507556512706480, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
+      propertyPath: cardPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 7286999753761024897, guid: d7fe239ca19d37f40b9d9ae3d387e73d, type: 3}
     - target: {fileID: 9123802450262014669, guid: 85c17d2439107dd4f8f42ac86022b6d3, type: 3}
       propertyPath: m_Name
       value: Drop Area
@@ -1748,7 +1776,7 @@ PrefabInstance:
       objectReference: {fileID: 2590521097856624797}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.data[0]
@@ -1757,11 +1785,51 @@ PrefabInstance:
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.data[1]
       value: 
-      objectReference: {fileID: 8680502948703460179, guid: 311687dc55e55ae42aab8bc98440cdc1, type: 3}
+      objectReference: {fileID: 8680502948703460179, guid: ca86489eb6281ab41938ce58b81c4b7f, type: 3}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.data[2]
       value: 
-      objectReference: {fileID: 8680502948703460179, guid: eafc9f9c096b23c40bf52ebeb243236a, type: 3}
+      objectReference: {fileID: 8680502948703460179, guid: 04e0d7bf3244e6546a3417758d369220, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[3]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: 268fadcf8dfba1a4791ba8cfbd29eb6b, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[4]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: 2fb768d430310b64fa2c504d97547193, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[5]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: 637620aedb59b2645bc758647fcff99a, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3248614043219392576, guid: 9c3b61bd600fbef4fb019995f7f5a021, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7515613336041648913, guid: 6cc9ec1ff27bc5a4c96ecbc0aeceaf76, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5661813507539609326, guid: 0024b3f5439d419458c7360b2ef79128, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 3142601080797373330, guid: 79f226d7f271c0045b24d99c0faa3605, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1410032329703578042, guid: d7bbc67ee095ab04a9cf053a69685e36, type: 3}
+    - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: cardPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 7286999753761024897, guid: d7fe239ca19d37f40b9d9ae3d387e73d, type: 3}
     - target: {fileID: 4006063818014448289, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: m_Camera
       value: 

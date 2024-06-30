@@ -10,6 +10,7 @@ public class OptionCardButton : MonoBehaviour
     public float checkInterval = 0.5f;       // Interval in seconds to check for updates
     private GameOverScreen gameOverScreen = new GameOverScreen();
     public int handCardLimit = 15;           // Maximum number of cards allowed in hand
+    public Color borderColor = Color.black; // Color for the border when highlighted
 
     [System.Serializable]
     public class CardRequirement
@@ -43,7 +44,7 @@ public class OptionCardButton : MonoBehaviour
 
         if (dropAreaManager != null)
         {
-            // Set the button to its default tinted state
+            // Set the button to its default state
             SetButtonTint(true);
             InvokeRepeating(nameof(CheckCardCounts), 0, checkInterval);
         }
@@ -98,24 +99,41 @@ public class OptionCardButton : MonoBehaviour
 
     private void SetButtonTint(bool tint)
     {
-        ColorBlock colors = optionButton.colors;
+        Image buttonImage = optionButton.GetComponent<Image>();
+
         if (tint)
         {
-            // Set to tinted transparent grey
-            colors.normalColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // RGBA(0.5, 0.5, 0.5, 0.5) - Transparent grey
-            colors.highlightedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Same tint on highlight
-            colors.pressedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Same tint when pressed
-            colors.selectedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Same tint when selected
+            // Set to fully opaque
+            buttonImage.color = new Color(1f, 1f, 1f, 1f); // RGBA(1, 1, 1, 1) - Fully opaque
+            // Remove border
+            RemoveButtonBorder(buttonImage);
         }
         else
         {
-            // Set to fully opaque
-            colors.normalColor = new Color(1f, 1f, 1f, 1f); // RGBA(1, 1, 1, 1) - Fully opaque
-            colors.highlightedColor = new Color(1f, 1f, 1f, 1f); // Fully opaque on highlight
-            colors.pressedColor = new Color(1f, 1f, 1f, 1f); // Fully opaque when pressed
-            colors.selectedColor = new Color(1f, 1f, 1f, 1f); // Fully opaque when selected
+            // Set to fully opaque and add a border
+            buttonImage.color = new Color(1f, 1f, 1f, 1f); // RGBA(1, 1, 1, 1) - Fully opaque
+            AddButtonBorder(buttonImage);
         }
-        optionButton.colors = colors;
+    }
+
+    private void AddButtonBorder(Image buttonImage)
+    {
+        Outline outline = optionButton.GetComponent<Outline>();
+        if (outline == null)
+        {
+            outline = optionButton.gameObject.AddComponent<Outline>();
+        }
+        outline.effectColor = borderColor;
+        outline.effectDistance = new Vector2(5, 5);
+    }
+
+    private void RemoveButtonBorder(Image buttonImage)
+    {
+        Outline outline = optionButton.GetComponent<Outline>();
+        if (outline != null)
+        {
+            Destroy(outline);
+        }
     }
 
     private void OnButtonClick()
