@@ -30,6 +30,13 @@ public class CardCounterDisplay : MonoBehaviour
         {
             sum += entry.Value;
         }
-        cardCountText.text = sum.ToString() + "/15";
+
+        if (sum >= 15)
+        {
+            cardCountText.text = sum.ToString() + "/15!";
+        } else
+        {
+            cardCountText.text = sum.ToString() + "/15";
+        }
     }
 }

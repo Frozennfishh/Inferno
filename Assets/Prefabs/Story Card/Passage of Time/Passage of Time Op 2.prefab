@@ -137,6 +137,7 @@ MonoBehaviour:
   drawCardsTag: DrawCards
   optionButton: {fileID: 4587660898172706987}
   checkInterval: 0.1
+  handCardLimit: 15
   cardRequirements:
   - cardType: Sanity
     requiredCount: 1
