@@ -17,6 +17,7 @@ public class TestGameOverButton : MonoBehaviour
         // Call the gameOver function from the GameOverScreen script
         if (gameOverScreen != null)
         {
+            Debug.Log("herlp");
             gameOverScreen.gameOver();
         }
         else

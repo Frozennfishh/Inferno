@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 752350213}
   - component: {fileID: 752350212}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Hand Area Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1776,7 +1776,7 @@ PrefabInstance:
       objectReference: {fileID: 2590521097856624797}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: storyDeck.Array.data[0]
@@ -1810,6 +1810,10 @@ PrefabInstance:
       propertyPath: storyDeck.Array.data[7]
       value: 
       objectReference: {fileID: 8680502948703460179, guid: 0c628d253a1c98c4d9e6297430e16cd9, type: 3}
+    - target: {fileID: 801888568314252758, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: storyDeck.Array.data[8]
+      value: 
+      objectReference: {fileID: 8680502948703460179, guid: af680588eaf396641aeb151a5a18985f, type: 3}
     - target: {fileID: 2139867863997832203, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: cardPrefabs.Array.size
       value: 6
@@ -1838,6 +1842,14 @@ PrefabInstance:
       propertyPath: cardPrefabs.Array.data[5]
       value: 
       objectReference: {fileID: 7286999753761024897, guid: d7fe239ca19d37f40b9d9ae3d387e73d, type: 3}
+    - target: {fileID: 2523233694418643832, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2523233694418643832, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 860
+      objectReference: {fileID: 0}
     - target: {fileID: 4006063818014448289, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1845,6 +1857,14 @@ PrefabInstance:
     - target: {fileID: 4006063818014448289, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: m_RenderMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693768266797886832, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693768266797886832, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 5182125166820116890, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       propertyPath: m_Name
@@ -1958,12 +1978,6 @@ PrefabInstance:
       addedObject: {fileID: 7795535971040282043}
     - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 261771970}
-    - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 179281484}
-    - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1284596491}
     - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       insertIndex: -1
@@ -1971,6 +1985,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
       insertIndex: -1
       addedObject: {fileID: 752350211}
+    - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 179281484}
+    - targetCorrespondingSourceObject: {fileID: 6015807247965932479, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 261771970}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b2ac99e8f42984f9749cad9ee05245, type: 3}
 --- !u!1001 &4940071169260956329
