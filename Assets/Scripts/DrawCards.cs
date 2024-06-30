@@ -63,6 +63,8 @@ public class DrawCards : MonoBehaviour
         }
         */
         DrawAdditionalStoryCard();
+        GameObject playerCardExtra = Instantiate(playerDeck[5], new Vector3(0, 0, 0), Quaternion.identity);
+        playerCardExtra.transform.SetParent(handArea.transform, false);
     }
 
     private void DrawStoryCard()

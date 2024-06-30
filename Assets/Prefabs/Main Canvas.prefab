@@ -389,8 +389,14 @@ MonoBehaviour:
   storyCard1: {fileID: 8680502948703460179, guid: fe8511dcf19ff1b4fa6025ca015ecd17, type: 3}
   storyCard2: {fileID: 1573118375468254508, guid: 724417db5d9d7284a85b7ea3ddcf0702, type: 3}
   card1: {fileID: 5661813507539609326, guid: 0024b3f5439d419458c7360b2ef79128, type: 3}
+  card2: {fileID: 0}
+  card3: {fileID: 0}
+  card4: {fileID: 0}
+  card5: {fileID: 0}
+  card6: {fileID: 0}
   handArea: {fileID: 2951109146099959522}
   storyArea: {fileID: 90462470507575234}
+  optionArea: {fileID: 0}
 --- !u!1001 &2475128207331341619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -700,83 +706,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hand Area
       objectReference: {fileID: 0}
-    - target: {fileID: 8271631620247342475, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}
-      propertyPath: m_TagString
-      value: PlayerArea
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8271631620247342475, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3216559179238557246}
-    - targetCorrespondingSourceObject: {fileID: 8271631620247342475, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8678660939211939725}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}
 --- !u!1 &2951109146099959522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8271631620247342475, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}
   m_PrefabInstance: {fileID: 6502862527235001193}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3216559179238557246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951109146099959522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6be7d89441a523489736b2e6599bac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &8678660939211939725
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951109146099959522}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1920, y: 250}
-  m_EdgeRadius: 0
 --- !u!224 &6855123976874120461 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 368316518528900708, guid: 4ede9400c9ca16d40b5dda4d890793f8, type: 3}

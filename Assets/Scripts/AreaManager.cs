@@ -7,7 +7,6 @@ public class AreaManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Trigger Enter: {collision.gameObject.name} with tag {collision.tag}");
         if (IsResourceCard(collision.tag))
         {
             string cardType = collision.tag;
@@ -21,14 +20,12 @@ public class AreaManager : MonoBehaviour
                 cardCounts[cardType] = 1;
             }
 
-            Debug.Log($"Card entered: {cardType}. Updated counts:");
             PrintCardCounts();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log($"Trigger Exit: {collision.gameObject.name} with tag {collision.tag}");
         if (IsResourceCard(collision.tag))
         {
             string cardType = collision.tag;
@@ -42,10 +39,14 @@ public class AreaManager : MonoBehaviour
                     cardCounts.Remove(cardType);
                 }
 
-                Debug.Log($"Card exited: {cardType}. Updated counts:");
                 PrintCardCounts();
             }
         }
+    }
+
+    public Dictionary<string, int> GetCardCounts()
+    {
+        return new Dictionary<string, int>(cardCounts);
     }
 
     public int GetCardCount(string cardType)
