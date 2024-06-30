@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DrawCards : MonoBehaviour
 {
-    /*public GameObject storyCard1;
-    public GameObject storyCard2;*/
     public GameObject card1; //Soul
     public GameObject card2; //Stamina
     public GameObject card3; //Scraps
@@ -25,9 +23,6 @@ public class DrawCards : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize decks
-        /*storyDeck.Add(storyCard1);
-        storyDeck.Add(storyCard2);*/
         remainingStoryDeck.AddRange(storyDeck);
 
         playerDeck.Add(card1);
