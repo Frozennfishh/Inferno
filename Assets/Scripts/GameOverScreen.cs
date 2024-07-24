@@ -12,7 +12,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void restartButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Game Scene");
     }
 
     public void mainMenuButton()
