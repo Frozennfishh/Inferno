@@ -48,6 +48,7 @@ public class DrawCards : MonoBehaviour
 
     public void onClick()
     {
+        // Proceed to draw a new story card
         DrawAdditionalStoryCard();
     }
 
@@ -56,33 +57,51 @@ public class DrawCards : MonoBehaviour
         if (remainingStoryDeck.Count == 0)
         {
             Debug.Log("No more cards in the story deck! Replenishing RemainingStoryDeck");
-            // Replenish remainingStoryDeck with drawnStoryCards and reset drawnStoryCards
-            remainingStoryDeck.AddRange(drawnStoryCards);
-            drawnStoryCards.Clear();
+
+            // Check if drawnStoryCards has cards to replenish
+            if (drawnStoryCards.Count > 0)
+            {
+                // Replenish remainingStoryDeck with drawnStoryCards and reset drawnStoryCards
+                remainingStoryDeck.AddRange(drawnStoryCards);
+                drawnStoryCards.Clear();
+            }
+            else
+            {
+                Debug.LogWarning("drawnStoryCards is also empty. No cards to replenish!");
+            }
         }
 
         if (remainingStoryDeck.Count > 0)
         {
             int randomIndex = Random.Range(0, remainingStoryDeck.Count);
-            GameObject storyCard = Instantiate(remainingStoryDeck[randomIndex], new Vector3(0, 0, 0), Quaternion.identity);
-            storyCard.transform.SetParent(storyArea.transform, false);
+            GameObject cardPrefab = remainingStoryDeck[randomIndex];
 
-            // Assign the option area to the instantiated story card
-            StoryCard storyCardScript = storyCard.GetComponent<StoryCard>();
-            if (storyCardScript != null)
+            if (cardPrefab != null)
             {
-                storyCardScript.optionArea = optionArea;
+                GameObject storyCard = Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                storyCard.transform.SetParent(storyArea.transform, false);
+
+                // Assign the option area to the instantiated story card
+                StoryCard storyCardScript = storyCard.GetComponent<StoryCard>();
+                if (storyCardScript != null)
+                {
+                    storyCardScript.optionArea = optionArea;
+                }
+                else
+                {
+                    Debug.LogError("StoryCard script not found on instantiated story card!");
+                }
+
+                // Add the prefab (not the instantiated object) to the drawnStoryCards list
+                drawnStoryCards.Add(cardPrefab);
+
+                // Remove the prefab from the remaining deck
+                remainingStoryDeck.RemoveAt(randomIndex);
             }
             else
             {
-                Debug.LogError("StoryCard script not found on instantiated story card!");
+                Debug.LogError("Card prefab is null!");
             }
-
-            // Add the drawn card to the drawnStoryCards list
-            drawnStoryCards.Add(remainingStoryDeck[randomIndex]);
-
-            // Remove the drawn card from the remaining deck
-            remainingStoryDeck.RemoveAt(randomIndex);
         }
         else
         {
@@ -108,13 +127,23 @@ public class DrawCards : MonoBehaviour
         DrawStoryCard();
     }
 
-    public List<GameObject> GetRemainingStoryDeck()
+    public int GetRemainingStoryDeckCount()
     {
-        return new List<GameObject>(remainingStoryDeck); // Return a copy of the remaining deck
+        return remainingStoryDeck.Count; // Return a copy of the remaining deck
     }
 
-    public List<GameObject> GetDrawnStoryCards()
+    public int GetDrawnStoryCardsCount()
     {
-        return new List<GameObject>(drawnStoryCards); // Return a copy of the drawn cards
+        return drawnStoryCards.Count; // Return a copy of the drawn cards
+    }
+
+    public void addCardToDrawnStoryCards(GameObject card)
+    {
+        drawnStoryCards.Add(card);
+    }
+
+    public void deleteCardFromRemainingStoryDeck(GameObject card)
+    {
+        remainingStoryDeck.Remove(card);
     }
 }

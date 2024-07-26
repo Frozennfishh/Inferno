@@ -8,7 +8,7 @@ public class OptionCardButton : MonoBehaviour
     public string drawCardsTag = "DrawCards"; // Tag of the DrawCards GameObject
     public Button optionButton;              // Reference to the button component
     public float checkInterval = 0.5f;       // Interval in seconds to check for updates
-    private GameOverScreen gameOverScreen = new GameOverScreen();
+    //private GameOverScreen gameOverScreen = new GameOverScreen();
     public int handCardLimit = 15;           // Maximum number of cards allowed in hand
     public Color borderColor = Color.black; // Color for the border when highlighted
 
