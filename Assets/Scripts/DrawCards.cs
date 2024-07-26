@@ -14,6 +14,7 @@ public class DrawCards : MonoBehaviour
     public GameObject handArea;
     public GameObject storyArea;
     public GameObject optionArea;
+    private AreaManager areaManager;
 
     private List<GameObject> playerDeck = new List<GameObject>();
     public List<GameObject> storyDeck = new List<GameObject>();
@@ -35,7 +36,8 @@ public class DrawCards : MonoBehaviour
         // Instatiate player starting hand
         for (int k = 0; k < playerDeck.Count; k++)
         {
-            GameObject playerCard = Instantiate(playerDeck[k], new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject playerCard = Instantiate(playerDeck[k], new Vector3(0, 0, 0),
+                Quaternion.identity);
             playerCard.transform.SetParent(handArea.transform, false);
         }
 
@@ -50,6 +52,82 @@ public class DrawCards : MonoBehaviour
     {
         // Proceed to draw a new story card
         DrawAdditionalStoryCard();
+    }
+
+    // Helper method to convert the dictionary to a list of card prefabs
+    private List<GameObject> ConvertDictionaryToCardList(Dictionary<string, int> cardCounts)
+    {
+        List<GameObject> cardList = new List<GameObject>();
+
+        foreach (KeyValuePair<string, int> entry in cardCounts)
+        {
+            string cardTag = entry.Key;
+            int count = entry.Value;
+
+            GameObject cardPrefab = GetCardPrefabByTag(cardTag);
+
+            for (int i = 0; i < count; i++)
+            {
+                cardList.Add(cardPrefab);
+            }
+        }
+
+        return cardList;
+    }
+
+    // Helper method to clear the current hand area
+    private void ClearHandArea()
+    {
+        foreach (Transform child in handArea.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    // Example method to get the card prefab by tag
+    private GameObject GetCardPrefabByTag(string tag)
+    {
+        // You will need to implement your own method of retrieving the correct prefab by its tag
+        switch (tag)
+        {
+            case "Soul":
+                return card1;
+            case "Stamina":
+                return card2;
+            case "Scraps":
+                return card3;
+            case "Sin":
+                return card4;
+            case "Strength":
+                return card5;
+            case "Sanity":
+                return card6;
+            default:
+                Debug.LogError("Unknown card tag: " + tag);
+                return null;
+        }
+    }
+
+    public Dictionary<string, int> getCardCounts()
+    {
+        // Assuming you have a method that calculates and returns the count of each card type in the hand area
+        Dictionary<string, int> cardCounts = new Dictionary<string, int>();
+
+        foreach (Transform card in handArea.transform)
+        {
+            string cardTag = card.tag;
+
+            if (cardCounts.ContainsKey(cardTag))
+            {
+                cardCounts[cardTag]++;
+            }
+            else
+            {
+                cardCounts[cardTag] = 1;
+            }
+        }
+
+        return cardCounts;
     }
 
     private void DrawStoryCard()
@@ -117,6 +195,25 @@ public class DrawCards : MonoBehaviour
         {
             Debug.Log("No more cards in the story deck! BROK");
         }
+
+        //Reorg Hand
+
+        // Retrieve the dictionary of cards in the hand area
+        Dictionary<string, int> cardCounts = getCardCounts();
+
+        // Convert the dictionary into a list of card prefabs
+        List<GameObject> newHand = ConvertDictionaryToCardList(cardCounts);
+
+        // Clear the current hand area
+        ClearHandArea();
+
+        // Re-instantiate all cards in the new list into the hand area
+        foreach (GameObject cardPrefab in newHand)
+        {
+            GameObject card = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
+            card.transform.SetParent(handArea.transform, false);
+        }
+
     }
 
     public void DrawAdditionalStoryCard()

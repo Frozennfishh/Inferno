@@ -74,4 +74,9 @@ public class AreaManager : MonoBehaviour
         }
         Debug.Log(message);
     }
+
+    public Dictionary<string, int> getCardCounts()
+    {
+        return cardCounts;
+    }
 }
