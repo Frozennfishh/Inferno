@@ -139,6 +139,10 @@ MonoBehaviour:
   checkInterval: 0.1
   handCardLimit: 15
   borderColor: {r: 0, g: 0, b: 0, a: 1}
+  InsertCard:
+  - {fileID: 8680502948703460179, guid: 10f3af754f2041a4c9b05cb42fa38531, type: 3}
+  RemoveCard:
+  - {fileID: 8680502948703460179, guid: 04e0d7bf3244e6546a3417758d369220, type: 3}
   cardRequirements:
   - cardType: Soul
     requiredCount: 1

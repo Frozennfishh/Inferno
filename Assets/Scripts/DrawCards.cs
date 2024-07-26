@@ -92,11 +92,21 @@ public class DrawCards : MonoBehaviour
                     Debug.LogError("StoryCard script not found on instantiated story card!");
                 }
 
-                // Add the prefab (not the instantiated object) to the drawnStoryCards list
-                drawnStoryCards.Add(cardPrefab);
 
-                // Remove the prefab from the remaining deck
-                remainingStoryDeck.RemoveAt(randomIndex);
+                if (storyCard.CompareTag("Once Only Card"))
+                {
+                    deleteCardFromRemainingStoryDeck(cardPrefab);
+                }
+                else
+                {
+                    // Add the prefab (not the instantiated object) to the drawnStoryCards list
+                    //drawnStoryCards.Add(cardPrefab);
+                    addCardToDrawnStoryCards(cardPrefab);
+
+                    // Remove the prefab from the remaining deck
+                    // remainingStoryDeck.RemoveAt(randomIndex);
+                    deleteCardFromRemainingStoryDeck(cardPrefab);
+                }
             }
             else
             {
@@ -145,5 +155,10 @@ public class DrawCards : MonoBehaviour
     public void deleteCardFromRemainingStoryDeck(GameObject card)
     {
         remainingStoryDeck.Remove(card);
+    }
+
+    public void deleteCardFromDrawnStoryDeck(GameObject card)
+    {
+        drawnStoryCards.Remove(card);
     }
 }

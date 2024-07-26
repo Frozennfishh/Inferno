@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class OptionCardButton : MonoBehaviour
     //private GameOverScreen gameOverScreen = new GameOverScreen();
     public int handCardLimit = 15;           // Maximum number of cards allowed in hand
     public Color borderColor = Color.black; // Color for the border when highlighted
+    public List<GameObject> InsertCard = new List<GameObject>();
+    public List<GameObject> RemoveCard = new List<GameObject>();
 
     [System.Serializable]
     public class CardRequirement
@@ -172,6 +175,16 @@ public class OptionCardButton : MonoBehaviour
                         Destroy(handCards[randomIndex].gameObject);
                         handCards.RemoveAt(randomIndex);
                     }
+                }
+
+                foreach (GameObject card in InsertCard)
+                {
+                    drawCards.addCardToDrawnStoryCards(card);
+                }
+
+                foreach (GameObject card in RemoveCard)
+                {
+                    drawCards.deleteCardFromDrawnStoryDeck(card);
                 }
 
                 // Draw additional story card
