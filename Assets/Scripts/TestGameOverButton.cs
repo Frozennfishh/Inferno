@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TestGameOverButton : MonoBehaviour
@@ -18,7 +19,8 @@ public class TestGameOverButton : MonoBehaviour
         if (gameOverScreen != null)
         {
             Debug.Log("herlp");
-            gameOverScreen.gameOver();
+            //gameOverScreen.gameOver();
+            SceneManager.LoadScene("Game Over");
         }
         else
         {

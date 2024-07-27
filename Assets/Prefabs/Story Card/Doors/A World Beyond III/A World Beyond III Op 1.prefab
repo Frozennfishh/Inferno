@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4587660898172706987}
   - component: {fileID: 333479378669427823}
   m_Layer: 5
-  m_Name: A World Beyond II Op 3
-  m_TagString: Untagged
+  m_Name: A World Beyond III Op 1
+  m_TagString: Win Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e98e155d5fbeb0e498dc65776a75098c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72cd5bface7094f48858dc808ca8b7ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -139,11 +139,10 @@ MonoBehaviour:
   checkInterval: 0.1
   handCardLimit: 15
   borderColor: {r: 0, g: 0, b: 0, a: 1}
-  InsertCard:
-  - {fileID: 8680502948703460179, guid: d81a804e40d4b154f84e253727477e34, type: 3}
-  RemoveCard:
-  - {fileID: 8680502948703460179, guid: 10f3af754f2041a4c9b05cb42fa38531, type: 3}
+  InsertCard: []
+  RemoveCard: []
+  gameOverScreen: {fileID: 0}
   cardRequirements:
-  - cardType: Sin
-    requiredCount: 2
+  - cardType: Soul
+    requiredCount: 1
   rewardList: []

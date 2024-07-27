@@ -15,6 +15,7 @@ TagManager:
   - Sanity
   - DrawCards
   - Once Only Card
+  - Win Card
   layers:
   - Default
   - TransparentFX

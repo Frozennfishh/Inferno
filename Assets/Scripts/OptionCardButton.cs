@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class OptionCardButton : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class OptionCardButton : MonoBehaviour
     public Color borderColor = Color.black; // Color for the border when highlighted
     public List<GameObject> InsertCard = new List<GameObject>();
     public List<GameObject> RemoveCard = new List<GameObject>();
+    public GameOverScreen gameOverScreen;
 
     [System.Serializable]
     public class CardRequirement
@@ -146,8 +149,15 @@ public class OptionCardButton : MonoBehaviour
         {
             Debug.Log("Good to go");
 
-            // Instantiate reward cards in the player's hand
-            if (drawCards != null)
+            if (this.CompareTag("Win Card"))
+            {
+                Debug.Log("Win!");
+                //gameOverScreen.gameOver();
+                SceneManager.LoadScene("Win Scene");
+            }
+
+                // Instantiate reward cards in the player's hand
+                if (drawCards != null)
             {
                 foreach (GameObject rewardCard in rewardList)
                 {
