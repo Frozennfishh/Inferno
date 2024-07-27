@@ -18,6 +18,7 @@ public class DrawCards : MonoBehaviour
 
     private List<GameObject> playerDeck = new List<GameObject>();
     public List<GameObject> storyDeck = new List<GameObject>();
+    public List<GameObject> triggerDeck = new List<GameObject>();
     private List<GameObject> remainingStoryDeck = new List<GameObject>();
     private List<GameObject> drawnStoryCards = new List<GameObject>(); // List to keep track of drawn cards
 
@@ -82,12 +83,12 @@ public class DrawCards : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        //Debug.Log($"Hand area cleared. Remaining child count: {handArea.transform.childCount}");
     }
 
-    // Example method to get the card prefab by tag
     private GameObject GetCardPrefabByTag(string tag)
     {
-        // You will need to implement your own method of retrieving the correct prefab by its tag
         switch (tag)
         {
             case "Soul":
@@ -110,7 +111,6 @@ public class DrawCards : MonoBehaviour
 
     public Dictionary<string, int> getCardCounts()
     {
-        // Assuming you have a method that calculates and returns the count of each card type in the hand area
         Dictionary<string, int> cardCounts = new Dictionary<string, int>();
 
         foreach (Transform card in handArea.transform)
@@ -134,6 +134,7 @@ public class DrawCards : MonoBehaviour
     {
         if (remainingStoryDeck.Count == 0)
         {
+            
             Debug.Log("No more cards in the story deck! Replenishing RemainingStoryDeck");
 
             // Check if drawnStoryCards has cards to replenish
@@ -147,73 +148,72 @@ public class DrawCards : MonoBehaviour
             {
                 Debug.LogWarning("drawnStoryCards is also empty. No cards to replenish!");
             }
-        }
+        } 
+
+        
 
         if (remainingStoryDeck.Count > 0)
-        {
-            int randomIndex = Random.Range(0, remainingStoryDeck.Count);
-            GameObject cardPrefab = remainingStoryDeck[randomIndex];
-
-            if (cardPrefab != null)
             {
-                GameObject storyCard = Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                storyCard.transform.SetParent(storyArea.transform, false);
+                int randomIndex = Random.Range(0, remainingStoryDeck.Count);
+                GameObject cardPrefab = remainingStoryDeck[randomIndex];
 
-                // Assign the option area to the instantiated story card
-                StoryCard storyCardScript = storyCard.GetComponent<StoryCard>();
-                if (storyCardScript != null)
+                if (cardPrefab != null)
                 {
-                    storyCardScript.optionArea = optionArea;
+                    GameObject storyCard = Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    storyCard.transform.SetParent(storyArea.transform, false);
+
+                    // Assign the option area to the instantiated story card
+                    StoryCard storyCardScript = storyCard.GetComponent<StoryCard>();
+                    if (storyCardScript != null)
+                    {
+                        storyCardScript.optionArea = optionArea;
+                    }
+                    else
+                    {
+                        Debug.LogError("StoryCard script not found on instantiated story card!");
+                    }
+
+
+                    if (storyCard.CompareTag("Once Only Card"))
+                    {
+                        deleteCardFromRemainingStoryDeck(cardPrefab);
+                    }
+                    else
+                    {
+                        // Add the prefab (not the instantiated object) to the drawnStoryCards list
+                        addCardToDrawnStoryCards(cardPrefab);
+
+                        // Remove the prefab from the remaining deck
+                        deleteCardFromRemainingStoryDeck(cardPrefab);
+                    }
                 }
                 else
                 {
-                    Debug.LogError("StoryCard script not found on instantiated story card!");
-                }
-
-
-                if (storyCard.CompareTag("Once Only Card"))
-                {
-                    deleteCardFromRemainingStoryDeck(cardPrefab);
-                }
-                else
-                {
-                    // Add the prefab (not the instantiated object) to the drawnStoryCards list
-                    //drawnStoryCards.Add(cardPrefab);
-                    addCardToDrawnStoryCards(cardPrefab);
-
-                    // Remove the prefab from the remaining deck
-                    // remainingStoryDeck.RemoveAt(randomIndex);
-                    deleteCardFromRemainingStoryDeck(cardPrefab);
+                    Debug.LogError("Card prefab is null!");
                 }
             }
             else
             {
-                Debug.LogError("Card prefab is null!");
+                Debug.Log("No more cards in the story deck! BROK");
             }
-        }
-        else
-        {
-            Debug.Log("No more cards in the story deck! BROK");
-        }
 
-        //Reorg Hand
+            //Reorg Hand
 
-        // Retrieve the dictionary of cards in the hand area
-        Dictionary<string, int> cardCounts = getCardCounts();
+            // Retrieve the dictionary of cards in the hand area
+            Dictionary<string, int> cardCounts = getCardCounts();
 
-        // Convert the dictionary into a list of card prefabs
-        List<GameObject> newHand = ConvertDictionaryToCardList(cardCounts);
+            // Convert the dictionary into a list of card prefabs
+            List<GameObject> newHand = ConvertDictionaryToCardList(cardCounts);
 
-        // Clear the current hand area
-        ClearHandArea();
+            // Clear the current hand area
+            ClearHandArea();
 
-        // Re-instantiate all cards in the new list into the hand area
-        foreach (GameObject cardPrefab in newHand)
-        {
-            GameObject card = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
-            card.transform.SetParent(handArea.transform, false);
-        }
-
+            // Re-instantiate all cards in the new list into the hand area
+            foreach (GameObject cardPrefab in newHand)
+            {
+                GameObject card = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
+                card.transform.SetParent(handArea.transform, false);
+            }
     }
 
     public void DrawAdditionalStoryCard()
@@ -230,8 +230,55 @@ public class DrawCards : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Draw a new story card
-        DrawStoryCard();
+        Dictionary<string, int> cardCounts = getCardCounts();
+
+        int sum = 0;
+        foreach (var entry in cardCounts)
+        {
+            sum += entry.Value;
+        }
+
+        //Hoarder Trigger: 15 Cards or more
+        if (sum >= 15)
+        {
+            instantiateTriggerCard(0);
+        }
+        //Paranoia Trigger: 0 Sanity
+        else if (!cardCounts.ContainsKey("Sanity"))
+        {
+            instantiateTriggerCard(1);
+        }
+        //Deal with the Devil Trigger: 3 Sin
+        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] == 3)
+        {
+            instantiateTriggerCard(2);
+        }
+        //Repentence Trigger: 4 or more Sin
+        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] >= 4)
+        {
+            instantiateTriggerCard(3);
+        }
+        //Last Breath Trigger: 0 Strength
+        else if (!cardCounts.ContainsKey("Strength"))
+        {
+            instantiateTriggerCard(4);
+        }
+        //Greed Trigger: 5 or more Scraps
+        else if (cardCounts.ContainsKey("Scraps") && cardCounts["Scraps"] >= 5)
+        {
+            instantiateTriggerCard(5);
+        }
+
+        /*if (cardCounts.ContainsKey("Soul") && cardCounts["Soul"] >= 3)
+        {
+            // Trigger event for having 3 or more Soul cards
+        }*/
+
+                // Draw a new story card
+        else
+        {
+            DrawStoryCard();
+        }
     }
 
     public int GetRemainingStoryDeckCount()
@@ -257,5 +304,45 @@ public class DrawCards : MonoBehaviour
     public void deleteCardFromDrawnStoryDeck(GameObject card)
     {
         drawnStoryCards.Remove(card);
+    }
+
+    private void reorgHand()
+    {
+        //Reorg Hand
+
+        // Retrieve the dictionary of cards in the hand area
+        Dictionary<string, int> tempCardCounts = getCardCounts();
+
+        // Convert the dictionary into a list of card prefabs
+        List<GameObject> newHand = ConvertDictionaryToCardList(tempCardCounts);
+
+        // Clear the current hand area
+        ClearHandArea();
+
+        // Re-instantiate all cards in the new list into the hand area
+        foreach (GameObject cardPrefab in newHand)
+        {
+            GameObject card = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
+            card.transform.SetParent(handArea.transform, false);
+        }
+    }
+
+    private void instantiateTriggerCard(int i)
+    {
+        reorgHand();
+
+        GameObject storyCard = Instantiate(triggerDeck[i], new Vector3(0, 0, 0), Quaternion.identity);
+        storyCard.transform.SetParent(storyArea.transform, false);
+
+        // Assign the option area to the instantiated story card
+        StoryCard storyCardScript = storyCard.GetComponent<StoryCard>();
+        if (storyCardScript != null)
+        {
+            storyCardScript.optionArea = optionArea;
+        }
+        else
+        {
+            Debug.LogError("StoryCard script not found on instantiated story card!");
+        }
     }
 }

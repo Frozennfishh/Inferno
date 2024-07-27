@@ -144,7 +144,6 @@ public class OptionCardButton : MonoBehaviour
 
     private void OnButtonClick()
     {
-        GameObject dropArea = GameObject.FindGameObjectWithTag(dropAreaTag);
         if (requirementsMetLastCheck)
         {
             Debug.Log("Good to go");
@@ -152,39 +151,64 @@ public class OptionCardButton : MonoBehaviour
             if (this.CompareTag("Win Card"))
             {
                 Debug.Log("Win!");
-                //gameOverScreen.gameOver();
                 SceneManager.LoadScene("Win Scene");
             }
 
-                // Instantiate reward cards in the player's hand
-                if (drawCards != null)
+            // Instantiate reward cards in the player's hand
+            if (drawCards != null)
             {
                 foreach (GameObject rewardCard in rewardList)
                 {
-                    GameObject playerCard = Instantiate(rewardCard, new Vector3(0, 0, 0), Quaternion.identity);
+                    GameObject playerCard = Instantiate(rewardCard, Vector3.zero, Quaternion.identity);
                     playerCard.transform.SetParent(drawCards.handArea.transform, false);
                 }
 
+                /*
                 // Check the number of cards in the hand area
-                Transform handTransform = drawCards.handArea.transform;
-                if (handTransform.childCount > handCardLimit)
+                int totalCardsInHand = drawCards.handArea.transform.childCount;
+                Debug.Log(totalCardsInHand);
+                if (totalCardsInHand > handCardLimit)
                 {
                     Debug.Log("Hand exceeds limit. Removing random cards.");
 
-                    // Get all cards in the hand area
-                    List<Transform> handCards = new List<Transform>();
-                    foreach (Transform child in handTransform)
+                    // Duplicate the current hand of cards
+                    List<GameObject> duplicateHand = new List<GameObject>();
+                    foreach (Transform child in drawCards.handArea.transform)
                     {
-                        handCards.Add(child);
+                        duplicateHand.Add(child.gameObject);
                     }
 
-                    // Randomly select 5 cards to destroy
-                    for (int i = 0; i < 5; i++)
+                    // Randomly remove cards from the duplicate list
+                    int cardsToRemove = 5;
+                    for (int i = 0; i < cardsToRemove; i++)
                     {
-                        int randomIndex = Random.Range(0, handCards.Count);
-                        Destroy(handCards[randomIndex].gameObject);
-                        handCards.RemoveAt(randomIndex);
+                        if (duplicateHand.Count > 0)
+                        {
+                            int randomIndex = Random.Range(0, duplicateHand.Count);
+                            Debug.Log($"Removing card: {duplicateHand[randomIndex].name}");
+                            duplicateHand.RemoveAt(randomIndex);
+                        }
                     }
+
+                    // Clear all cards in the current hand area
+                    for (int i = drawCards.handArea.transform.childCount - 1; i >= 0; i--)
+                    {
+                        Transform child = drawCards.handArea.transform.GetChild(i);
+                        Destroy(child.gameObject);
+                    }
+
+                    // Re-add the remaining cards from the duplicate list into the hand area
+                    foreach (GameObject card in duplicateHand)
+                    {
+                        GameObject playerCard = Instantiate(card, Vector3.zero, Quaternion.identity);
+                        playerCard.transform.SetParent(drawCards.handArea.transform, false);
+                    } 
+                }*/
+
+                // Insert and remove specific cards in the drawn story cards list
+                foreach (GameObject card in RemoveCard)
+                {
+                    drawCards.deleteCardFromDrawnStoryDeck(card);
                 }
 
                 foreach (GameObject card in InsertCard)
@@ -192,18 +216,18 @@ public class OptionCardButton : MonoBehaviour
                     drawCards.addCardToDrawnStoryCards(card);
                 }
 
-                foreach (GameObject card in RemoveCard)
+                // Clear the drop area
+                GameObject dropArea = GameObject.FindGameObjectWithTag(dropAreaTag);
+                if (dropArea != null)
                 {
-                    drawCards.deleteCardFromDrawnStoryDeck(card);
+                    foreach (Transform child in dropArea.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
                 }
 
-                // Draw additional story card
+                // Draw an additional story card
                 drawCards.DrawAdditionalStoryCard();
-
-                foreach (Transform child in dropArea.transform)
-                {
-                    Destroy(child.gameObject);
-                }
             }
             else
             {
