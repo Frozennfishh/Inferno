@@ -24,7 +24,7 @@ public class AreaCardCountDisplay : MonoBehaviour
     private void UpdateCardCountText()
     {
         Dictionary<string, int> cardCounts = areaManager.GetCardCounts();
-        string displayText = "Card Counts:\n";
+        string displayText = "";
         foreach (var entry in cardCounts)
         {
             displayText += $"{entry.Key}: {entry.Value}\n";

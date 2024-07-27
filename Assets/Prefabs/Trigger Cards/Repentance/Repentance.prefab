@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3940013108033690012}
   - component: {fileID: 5763949706551609857}
   m_Layer: 5
-  m_Name: Repentence
+  m_Name: Repentance
   m_TagString: Once Only Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

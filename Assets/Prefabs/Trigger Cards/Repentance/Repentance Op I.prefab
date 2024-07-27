@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4587660898172706987}
   - component: {fileID: 333479378669427823}
   m_Layer: 5
-  m_Name: Repentence Op I
+  m_Name: Repentance Op I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

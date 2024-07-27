@@ -253,7 +253,7 @@ public class DrawCards : MonoBehaviour
         {
             instantiateTriggerCard(2);
         }
-        //Repentence Trigger: 4 or more Sin
+        //Repentance Trigger: 4 or more Sin
         else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] >= 4)
         {
             instantiateTriggerCard(3);
