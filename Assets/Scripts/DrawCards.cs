@@ -268,13 +268,7 @@ public class DrawCards : MonoBehaviour
         {
             instantiateTriggerCard(5);
         }
-
-        /*if (cardCounts.ContainsKey("Soul") && cardCounts["Soul"] >= 3)
-        {
-            // Trigger event for having 3 or more Soul cards
-        }*/
-
-                // Draw a new story card
+        // Draw a new story card
         else
         {
             DrawStoryCard();
