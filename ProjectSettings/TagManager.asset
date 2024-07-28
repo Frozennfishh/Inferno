@@ -16,6 +16,7 @@ TagManager:
   - DrawCards
   - Once Only Card
   - Win Card
+  - GameMusic
   layers:
   - Default
   - TransparentFX

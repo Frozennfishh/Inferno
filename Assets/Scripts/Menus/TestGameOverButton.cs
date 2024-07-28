@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class TestGameOverButton : MonoBehaviour
 {
     public Button testGameOverButton; // Reference to the UI Button
-    public GameOverScreen gameOverScreen; // Reference to the GameOverScreen script
 
     private void Start()
     {
@@ -15,16 +14,6 @@ public class TestGameOverButton : MonoBehaviour
 
     private void OnTestGameOverButtonClick()
     {
-        // Call the gameOver function from the GameOverScreen script
-        if (gameOverScreen != null)
-        {
-            Debug.Log("herlp");
-            //gameOverScreen.gameOver();
-            SceneManager.LoadScene("Game Over");
-        }
-        else
-        {
-            Debug.LogError("GameOverScreen script not assigned!");
-        }
+        SceneManager.LoadScene("Game Over");
     }
 }
