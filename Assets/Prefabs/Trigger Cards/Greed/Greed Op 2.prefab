@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4587660898172706987}
   - component: {fileID: 333479378669427823}
   m_Layer: 5
-  m_Name: Repentance Op II
+  m_Name: Greed Op 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76d8b5ea62cf9824aba7f2a165c775a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b168a8898f77d52468bf79a15343522c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -145,7 +145,7 @@ MonoBehaviour:
   soundEffect: {fileID: 0}
   cardRequirements:
   - cardType: Sin
-    requiredCount: 2
+    requiredCount: 1
   - cardType: Scraps
     requiredCount: 2
   rewardList: []

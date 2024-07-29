@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50cedb8bb6fbfcc43b965a8fde9a21f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 303018b433a3797479050ff4d92d4c6a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionCard1: {fileID: 9072369062800704144, guid: 5b75e85eb4b863e4781a85d9d8a2ee39, type: 3}
-  optionCard2: {fileID: 9072369062800704144, guid: 51b92ee31e326e34f908cd2209ca4265, type: 3}
+  optionCard2: {fileID: 9072369062800704144, guid: 797b8dfa741325a4299c0d1737c06c68, type: 3}
   optionCard3: {fileID: 9072369062800704144, guid: 8a5434ab67c61714782935a3d3b28cd7, type: 3}
   optionArea: {fileID: 6042394384024659634, guid: 98766e914f26b8347850d0dae0d3d893, type: 3}

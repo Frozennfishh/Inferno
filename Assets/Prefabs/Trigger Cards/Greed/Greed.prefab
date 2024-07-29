@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2943648, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50cedb8bb6fbfcc43b965a8fde9a21f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1dbb5e3072a469489ca397f829f3ae7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876f5bff935cb984f9817b2b8799c170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionCard1: {fileID: 9072369062800704144, guid: 51b92ee31e326e34f908cd2209ca4265, type: 3}
-  optionCard2: {fileID: 9072369062800704144, guid: 495f716edc90c604eb2d15752cd1292f, type: 3}
-  optionCard3: {fileID: 9072369062800704144, guid: 51b92ee31e326e34f908cd2209ca4265, type: 3}
+  optionCard1: {fileID: 9072369062800704144, guid: 495f716edc90c604eb2d15752cd1292f, type: 3}
+  optionCard2: {fileID: 9072369062800704144, guid: 797b8dfa741325a4299c0d1737c06c68, type: 3}
+  optionCard3: {fileID: 9072369062800704144, guid: fb38a4c2c5bb4be4b9e1f8f454dd2adc, type: 3}
   optionArea: {fileID: 6042394384024659634, guid: 98766e914f26b8347850d0dae0d3d893, type: 3}
