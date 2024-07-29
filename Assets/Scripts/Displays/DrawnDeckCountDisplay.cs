@@ -20,7 +20,8 @@ public class DrawnDeckCountDisplay : MonoBehaviour
     {
         if (drawnDeckCountText != null && gameManager != null)
         {
-            drawnDeckCountText.text = "Drawn Cards: " + gameManager.GetDrawnStoryCardsCount();
+            int count = gameManager.GetDrawnStoryCardsCount() - 1;
+            drawnDeckCountText.text = "" + count;
         }
     }
 }

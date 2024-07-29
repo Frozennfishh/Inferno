@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionCard1: {fileID: 9072369062800704144, guid: 2ac090023f8685e418deb384e998f596, type: 3}
-  optionCard2: {fileID: 9072369062800704144, guid: 17b087b9a30f8e745bbc34892643b2f4, type: 3}
+  optionCard2: {fileID: 9072369062800704144, guid: 797b8dfa741325a4299c0d1737c06c68, type: 3}
   optionCard3: {fileID: 9072369062800704144, guid: 0e9d649a40bc24e40aec4e233a3ee672, type: 3}
   optionArea: {fileID: 6042394384024659634, guid: 98766e914f26b8347850d0dae0d3d893, type: 3}

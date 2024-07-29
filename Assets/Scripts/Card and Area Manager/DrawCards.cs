@@ -14,11 +14,15 @@ public class DrawCards : MonoBehaviour
     public GameObject handArea;
     public GameObject storyArea;
     public GameObject optionArea;
+    public AudioSource cardShuffle;
+    public AudioSource pickCard;
+    public AudioSource triggerSound;
     private AreaManager areaManager;
 
     private List<GameObject> playerDeck = new List<GameObject>();
     public List<GameObject> storyDeck = new List<GameObject>();
     public List<GameObject> triggerDeck = new List<GameObject>();
+    public List<GameObject> triggerStatus = new List<GameObject>();
     private List<GameObject> remainingStoryDeck = new List<GameObject>();
     private List<GameObject> drawnStoryCards = new List<GameObject>(); // List to keep track of drawn cards
 
@@ -140,9 +144,10 @@ public class DrawCards : MonoBehaviour
             // Check if drawnStoryCards has cards to replenish
             if (drawnStoryCards.Count > 0)
             {
+                cardShuffle.Play();
                 // Replenish remainingStoryDeck with drawnStoryCards and reset drawnStoryCards
                 remainingStoryDeck.AddRange(drawnStoryCards);
-                drawnStoryCards.Clear();
+                drawnStoryCards.Clear();        
             }
             else
             {
@@ -177,6 +182,7 @@ public class DrawCards : MonoBehaviour
                     if (storyCard.CompareTag("Once Only Card"))
                     {
                         deleteCardFromRemainingStoryDeck(cardPrefab);
+
                     }
                     else
                     {
@@ -218,6 +224,8 @@ public class DrawCards : MonoBehaviour
 
     public void DrawAdditionalStoryCard()
     {
+        pickCard.Play();
+
         // Clear the story area of the previous card
         foreach (Transform child in storyArea.transform)
         {
@@ -228,6 +236,11 @@ public class DrawCards : MonoBehaviour
         foreach (Transform child in optionArea.transform)
         {
             Destroy(child.gameObject);
+        }
+
+        foreach (GameObject statusScreen in triggerStatus)
+        {
+            statusScreen.SetActive(false);
         }
 
         Dictionary<string, int> cardCounts = getCardCounts();
@@ -248,13 +261,13 @@ public class DrawCards : MonoBehaviour
         {
             instantiateTriggerCard(1);
         }
-        //Deal with the Devil Trigger: 3 Sin
-        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] == 3)
+        //Deal with the Devil Trigger: 4 or more Sin
+        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] >= 4)
         {
             instantiateTriggerCard(2);
         }
-        //Repentance Trigger: 4 or more Sin
-        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] >= 4)
+        //Repentance Trigger: 3
+        else if (cardCounts.ContainsKey("Sin") && cardCounts["Sin"] == 4)
         {
             instantiateTriggerCard(3);
         }
@@ -263,8 +276,8 @@ public class DrawCards : MonoBehaviour
         {
             instantiateTriggerCard(4);
         }
-        //Greed Trigger: 5 or more Scraps
-        else if (cardCounts.ContainsKey("Scraps") && cardCounts["Scraps"] >= 5)
+        //Greed Trigger: 4 or more Scraps
+        else if (cardCounts.ContainsKey("Scraps") && cardCounts["Scraps"] >= 4)
         {
             instantiateTriggerCard(5);
         }
@@ -325,6 +338,9 @@ public class DrawCards : MonoBehaviour
     {
         reorgHand();
 
+        triggerSound.Play();
+
+        triggerStatus[i].SetActive(true);
         GameObject storyCard = Instantiate(triggerDeck[i], new Vector3(0, 0, 0), Quaternion.identity);
         storyCard.transform.SetParent(storyArea.transform, false);
 

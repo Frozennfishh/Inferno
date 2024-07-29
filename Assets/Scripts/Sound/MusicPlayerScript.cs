@@ -26,12 +26,15 @@ public class MusicPlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.volume = musicVolume;
+        if (audioSource != null)
+        {
+            audioSource.volume = musicVolume;
+        }
         PlayerPrefs.SetFloat("volume", musicVolume);
     }
 
     public void updateVolume(float volume)
     {
-        musicVolume = volume;
+        musicVolume = Mathf.Clamp(volume, 0f, 1f);
     }
 }

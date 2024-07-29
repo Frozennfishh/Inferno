@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class OptionCardButton : MonoBehaviour
@@ -10,13 +11,14 @@ public class OptionCardButton : MonoBehaviour
     public string dropAreaTag = "DropArea";  // Tag of the DropArea GameObject
     public string drawCardsTag = "DrawCards"; // Tag of the DrawCards GameObject
     public Button optionButton;              // Reference to the button component
-    public float checkInterval = 0.5f;       // Interval in seconds to check for updates
+    public float checkInterval = 0.1f;       // Interval in seconds to check for updates
     //private GameOverScreen gameOverScreen = new GameOverScreen();
     public int handCardLimit = 15;           // Maximum number of cards allowed in hand
     public Color borderColor = Color.black; // Color for the border when highlighted
     public List<GameObject> InsertCard = new List<GameObject>();
     public List<GameObject> RemoveCard = new List<GameObject>();
     public GameOverScreen gameOverScreen;
+    public AudioSource soundEffect;
 
     [System.Serializable]
     public class CardRequirement
@@ -35,23 +37,29 @@ public class OptionCardButton : MonoBehaviour
     private void Start()
     {
         // Find the DropArea GameObject by tag and get its AreaManager component
-        GameObject dropArea = GameObject.FindGameObjectWithTag(dropAreaTag);
+        GameObject dropArea = GameObject.FindGameObjectWithTag("DropArea");
         if (dropArea != null)
         {
             dropAreaManager = dropArea.GetComponent<AreaManager>();
+        } else
+        {
+            Debug.Log("Cannot find drop area");
         }
 
         // Find the DrawCards GameObject by tag and get its DrawCards component
-        GameObject drawCardsObject = GameObject.FindGameObjectWithTag(drawCardsTag);
+        GameObject drawCardsObject = GameObject.FindGameObjectWithTag("DrawCards");
         if (drawCardsObject != null)
         {
             drawCards = drawCardsObject.GetComponent<DrawCards>();
         }
+        else
+        {
+            Debug.Log("Cannot find Draw Cards");
+        }
 
         if (dropAreaManager != null)
         {
-            // Set the button to its default state
-            SetButtonTint(true);
+            // Set the button to its default state        
             InvokeRepeating(nameof(CheckCardCounts), 0, checkInterval);
         }
 
@@ -132,7 +140,7 @@ public class OptionCardButton : MonoBehaviour
         outline.effectColor = borderColor;
         outline.effectDistance = new Vector2(5, 5);
     }
-
+    
     private void RemoveButtonBorder(Image buttonImage)
     {
         Outline outline = optionButton.GetComponent<Outline>();
@@ -147,11 +155,20 @@ public class OptionCardButton : MonoBehaviour
         if (requirementsMetLastCheck)
         {
             Debug.Log("Good to go");
+            if (soundEffect != null)
+            {
+                PlayAndDetachAudio(soundEffect);
+            }
 
             if (this.CompareTag("Win Card"))
             {
                 Debug.Log("Win!");
                 SceneManager.LoadScene("Win Scene");
+            }
+
+            if (this.CompareTag("Lose Card"))
+            {
+                SceneManager.LoadScene("Game Over");
             }
 
             // Instantiate reward cards in the player's hand
@@ -226,6 +243,7 @@ public class OptionCardButton : MonoBehaviour
                     }
                 }
 
+
                 // Draw an additional story card
                 drawCards.DrawAdditionalStoryCard();
             }
@@ -238,5 +256,32 @@ public class OptionCardButton : MonoBehaviour
         {
             Debug.Log("Insufficient resources");
         }
+    }
+
+    public void PlayAndDetachAudio(AudioSource audioSource)
+    {
+        if (audioSource == null || audioSource.clip == null)
+        {
+            Debug.LogWarning("AudioSource or AudioClip is null.");
+            return;
+        }
+
+        // Create a new GameObject to play the audio
+        GameObject audioObject = new GameObject("TempAudio");
+        AudioSource tempAudioSource = audioObject.AddComponent<AudioSource>();
+
+        // Copy the settings from the original AudioSource
+        tempAudioSource.clip = audioSource.clip;
+        tempAudioSource.volume = audioSource.volume;
+        tempAudioSource.pitch = audioSource.pitch;
+        tempAudioSource.spatialBlend = audioSource.spatialBlend;
+        tempAudioSource.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
+
+        // Ensure the audio does not loop and play the clip
+        tempAudioSource.loop = false;
+        tempAudioSource.Play();
+
+        // Destroy the new GameObject after the clip has finished playing
+        Destroy(audioObject, tempAudioSource.clip.length);
     }
 }

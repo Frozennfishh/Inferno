@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41cb655bbd89b44488f986ed0ec98030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d849327fba8999a43a0cc42c3c920574, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -139,5 +139,9 @@ MonoBehaviour:
   checkInterval: 0.1
   handCardLimit: 15
   borderColor: {r: 0, g: 0, b: 0, a: 1}
+  InsertCard: []
+  RemoveCard: []
+  gameOverScreen: {fileID: 0}
+  soundEffect: {fileID: 0}
   cardRequirements: []
   rewardList: []

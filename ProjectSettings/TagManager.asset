@@ -17,6 +17,8 @@ TagManager:
   - Once Only Card
   - Win Card
   - GameMusic
+  - Debug
+  - Lose Card
   layers:
   - Default
   - TransparentFX

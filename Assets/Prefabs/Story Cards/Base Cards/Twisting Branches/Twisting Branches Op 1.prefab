@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4587660898172706987}
   - component: {fileID: 333479378669427823}
   m_Layer: 5
-  m_Name: A World Beyond III Op 2
+  m_Name: Twisting Branches Op 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41cb655bbd89b44488f986ed0ec98030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8537cb2ab6c56b448dda1a8709e3e13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -139,5 +139,11 @@ MonoBehaviour:
   checkInterval: 0.1
   handCardLimit: 15
   borderColor: {r: 0, g: 0, b: 0, a: 1}
-  cardRequirements: []
-  rewardList: []
+  InsertCard: []
+  RemoveCard: []
+  gameOverScreen: {fileID: 0}
+  cardRequirements:
+  - cardType: Scraps
+    requiredCount: 1
+  rewardList:
+  - {fileID: 3142601080797373330, guid: 79f226d7f271c0045b24d99c0faa3605, type: 3}

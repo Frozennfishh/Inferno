@@ -20,7 +20,7 @@ public class DisplayRemainingDeckCount : MonoBehaviour
     {
         if (remainingDeckCountText != null && gameManager != null)
         {
-            remainingDeckCountText.text = "Remaining Cards: " + gameManager.GetRemainingStoryDeckCount();
+            remainingDeckCountText.text = "" + gameManager.GetRemainingStoryDeckCount();
         }
     }
 }
